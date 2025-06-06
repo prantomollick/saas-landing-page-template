@@ -42,7 +42,7 @@ Want to run this project locally? It's as simple as it gets.
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/saas-landing-page-template.git
+    git clone https://github.com/prantomollick/saas-landing-page-template.git
     ```
 2.  **Navigate to the project directory:**
     ```bash
