@@ -144,16 +144,19 @@ section {
 }
 
 /* --- Hero Section --- */
+/* ====================================================== */
+/* START: ULTIMATE ELEGANCE HERO SECTION CSS              */
+/* ====================================================== */
+
 #hero {
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 20px;
+    display: grid; /* Use grid for easy centering */
+    place-items: center;
     position: relative;
     overflow: hidden;
 }
+
+/* Base Gradient & Pattern (Unchanged) */
 #hero::before {
     content: "";
     position: absolute;
@@ -167,52 +170,267 @@ section {
         var(--accent-violet),
         var(--accent-magenta)
     );
-    z-index: -1;
+    z-index: -3;
     transform: translate(-50%, -50%);
-    filter: blur(100px);
-    opacity: 0.5;
+    filter: blur(120px);
+    opacity: 0.6;
     animation: gradient-flow 15s ease-in-out infinite;
 }
-@keyframes gradient-flow {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
+.hero-background-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-image: linear-gradient(
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+        ),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -2;
+    animation: pan-grid 60s linear infinite;
+}
+@keyframes pan-grid {
+    from {
+        transform: translate(0, 0);
     }
-    50% {
-        transform: translate(-50%, -50%) rotate(180deg);
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
+    to {
+        transform: translate(-100px, -100px);
     }
 }
+
+/* Main Content & Graphics Container */
+.hero-content,
+.hero-graphics-container {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-content {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    z-index: 10; /* Text is always on top */
+    padding: 0 20px;
+}
+
+/* NEW: Premium Text Gradient */
 .hero-content h1 {
-    font-size: 4rem;
+    font-size: clamp(3rem, 6vw, 5rem);
     font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+    background: linear-gradient(120deg, #ffffff 50%, #d0d8ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
 }
 .hero-content p {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 2vw, 1.25rem);
     color: var(--text-secondary);
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
-.cta-button {
-    display: inline-block;
+
+/* NEW: Elegant CTA Button Styling */
+.elegant-cta {
+    position: relative;
     padding: 1rem 2.5rem;
-    background: linear-gradient(90deg, #fdfbfb, #ebedee);
-    color: #111;
+    background-color: var(--accent-blue);
+    color: #fff;
     font-size: 1.1rem;
     font-weight: 600;
     text-decoration: none;
     border-radius: 50px;
+    border: none;
+    z-index: 1;
+    overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.cta-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(235, 237, 238, 0.2);
+.elegant-cta::before {
+    /* Animated gradient overlay */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 300%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.8s ease;
 }
+.elegant-cta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(61, 90, 241, 0.4);
+}
+.elegant-cta:hover::before {
+    left: 100%;
+}
+
+/* --- NEW: Layered Floating UI Graphics --- */
+.graphic-element {
+    position: absolute;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    animation: drift 15s ease-in-out infinite alternate;
+    transition: transform 0.3s ease-out; /* Smooth parallax */
+}
+
+/* Positioning & Sizing */
+.main-dashboard-card {
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 200px;
+    transform: translate(-50%, -50%) rotate(-5deg);
+    border-radius: 16px;
+    padding: 1rem;
+    animation-duration: 12s;
+}
+.floating-orb {
+    border-radius: 50%;
+}
+.orb-1 {
+    top: 20%;
+    left: 15%;
+    width: 80px;
+    height: 80px;
+    background: rgba(171, 71, 188, 0.2);
+    animation-duration: 10s;
+}
+.orb-2 {
+    bottom: 15%;
+    right: 10%;
+    width: 50px;
+    height: 50px;
+    background: rgba(61, 90, 241, 0.2);
+    animation-duration: 18s;
+}
+.progress-card {
+    top: 70%;
+    left: 20%;
+    width: 200px;
+    height: 70px;
+    border-radius: 12px;
+    padding: 1rem;
+    animation-duration: 16s;
+}
+.check-card {
+    top: 25%;
+    right: 20%;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    color: #27c93f;
+    font-size: 1.5rem;
+    animation-duration: 13s;
+}
+
+@keyframes drift {
+    from {
+        transform: translate(var(--tx, 0), var(--ty, 0)) rotate(var(--r, 0));
+    }
+    to {
+        transform: translate(
+                calc(var(--tx, 0) + 20px),
+                calc(var(--ty, 0) - 20px)
+            )
+            rotate(var(--r, 0));
+    }
+}
+
+/* Styling for content INSIDE cards */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+.user-pills {
+    display: flex;
+    align-items: center;
+}
+.user-pills img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    margin-left: -8px;
+}
+.user-pills span {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    font-size: 0.7rem;
+    margin-left: -8px;
+}
+.dashboard-chart {
+    height: 100px;
+}
+.dashboard-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 1rem;
+}
+.dashboard-stat span {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+.dashboard-stat strong {
+    font-size: 1.2rem;
+    color: #27c93f;
+}
+.progress-card span {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    margin-top: 0.5rem;
+}
+.progress-fill {
+    width: 65%;
+    height: 100%;
+    background: var(--accent-blue);
+    border-radius: 3px;
+}
+
+/* Responsive: Hide graphics on mobile */
+@media (max-width: 768px) {
+    .hero-graphics-container {
+        display: none;
+    }
+}
+/* ====================================================== */
+/* END: ULTIMATE ELEGANCE HERO SECTION CSS                */
+/* ====================================================== */
 
 /* --- Universal Section Title --- */
 .section-title {

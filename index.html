@@ -57,14 +57,65 @@
     </header>
 
     <main>
-        <!-- Sections: Hero, Features, Pricing, About (as before) -->
+        <!-- ====================================================== -->
+        <!-- START: ULTIMATE ELEGANCE HERO SECTION                  -->
+        <!-- ====================================================== -->
         <section id="hero" class="scroll-section">
+            <!-- Background Elements -->
+            <div class="hero-background-pattern"></div>
+            <div class="hero-gradient-overlay"></div>
+
+            <!-- The new graphics container for parallax effect -->
+            <div class="hero-graphics-container">
+                <!-- Main Dashboard Card (Centerpiece) -->
+                <div class="graphic-element main-dashboard-card" data-depth="0.2">
+                    <div class="dashboard-header">
+                        <span>Dashboard</span>
+                        <div class="user-pills">
+                            <img src="https://i.pravatar.cc/20?img=1" alt="user avatar">
+                            <img src="https://i.pravatar.cc/20?img=2" alt="user avatar">
+                            <span>+3</span>
+                        </div>
+                    </div>
+                    <div class="dashboard-chart">
+                        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 0 30 C 20 10, 40 10, 60 25 S 80 40, 100 20" fill="none"
+                                stroke="url(#chart-gradient)" stroke-width="2" stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="chart-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="var(--accent-violet)" />
+                                    <stop offset="100%" stop-color="var(--accent-blue)" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="dashboard-stat"><span>Conversion Rate</span><strong>+12.5%</strong></div>
+                </div>
+
+                <!-- Satellite Graphics -->
+                <div class="graphic-element floating-orb orb-1" data-depth="0.4"></div>
+                <div class="graphic-element floating-orb orb-2" data-depth="0.15"></div>
+                <div class="graphic-element progress-card" data-depth="0.3">
+                    <span>Syncing...</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+                <div class="graphic-element check-card" data-depth="0.1">
+                    <i class="fas fa-check"></i>
+                </div>
+            </div>
+
+            <!-- Main Text Content -->
             <div class="hero-content">
                 <h1 class="reveal-item">Marketing Made Smarter</h1>
                 <p class="reveal-item">Powerful, easy-to-use SaaS solutions designed to help you grow</p>
-                <a href="#" class="cta-button reveal-item">Get Started</a>
+                <a href="#" class="cta-button elegant-cta reveal-item">Get Started for Free</a>
             </div>
         </section>
+        <!-- ====================================================== -->
+        <!-- END: ULTIMATE ELEGANCE HERO SECTION                    -->
+        <!-- ====================================================== -->
 
         <!-- ====================================================== -->
         <!-- START: REPLACEMENT FOR FEATURES SECTION                -->

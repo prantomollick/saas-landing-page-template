@@ -1,5 +1,65 @@
 document.addEventListener("DOMContentLoaded", () => {
     /**
+     * Handles the hero section's mouse-move parallax effect.
+     */
+    const initHeroParallax = () => {
+        const heroGraphics = document.querySelector(".hero-graphics");
+        if (!heroGraphics) return;
+
+        // Don't run on mobile where it's not visible
+        if (window.innerWidth < 768) return;
+
+        document.addEventListener("mousemove", (e) => {
+            const { clientX, clientY } = e;
+            const { innerWidth, innerHeight } = window;
+
+            // Calculate movement based on cursor position from center
+            // The division by 50 and 30 controls the "intensity" of the effect
+            const moveX = (clientX - innerWidth / 2) / 50;
+            const moveY = (clientY - innerHeight / 2) / 30;
+
+            heroGraphics.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+    };
+
+    /**
+     * Handles the hero section's multi-layered 3D parallax effect.
+     */
+    const initHero3DParallax = () => {
+        const heroSection = document.querySelector("#hero");
+        const graphicsContainer = document.querySelector(
+            ".hero-graphics-container"
+        );
+
+        if (!heroSection || !graphicsContainer) return;
+
+        // Don't run on mobile where graphics are hidden
+        if (window.innerWidth < 768) return;
+
+        heroSection.addEventListener("mousemove", (e) => {
+            // Get cursor position relative to the center of the viewport
+            const { clientX, clientY } = e;
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const moveX = (clientX - centerX) / 20; // Intensity factor
+            const moveY = (clientY - centerY) / 20;
+
+            // Apply transform to the whole container for a base movement
+            graphicsContainer.style.transform = `translate(${moveX}px, ${moveY}px)`;
+
+            // Apply individual transforms to each graphic element for depth
+            const graphicElements =
+                graphicsContainer.querySelectorAll(".graphic-element");
+            graphicElements.forEach((el) => {
+                const depth = parseFloat(el.dataset.depth) || 0;
+                const elMoveX = moveX * depth;
+                const elMoveY = moveY * depth;
+                el.style.transform = `translate(${elMoveX}px, ${elMoveY}px)`;
+            });
+        });
+    };
+
+    /**
      * Handles mobile navigation toggle.
      */
     const initMobileNav = () => {
@@ -160,6 +220,8 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Initialize all functionalities
+    initHeroParallax();
+    initHero3DParallax();
     initMobileNav();
     initHeaderScroll();
     initScrollReveal();
